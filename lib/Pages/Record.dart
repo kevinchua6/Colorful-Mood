@@ -163,7 +163,7 @@ class _ShareLevelButtonState extends State<ShareLevelButton> {
           (Set<MaterialState> states) {
             print(currentShareLevel);
             if (currentShareLevel == shareLevel) {
-              return Colors.black;
+              return Colors.blue[700];
             }
 
             if (states.contains(MaterialState.pressed))
