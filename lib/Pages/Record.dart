@@ -8,9 +8,13 @@ class RecordPage extends StatefulWidget {
   _RecordPageState createState() => _RecordPageState();
 }
 
+enum ShareLevel { PUBLIC, FRIENDS, PRIVATE }
+
 class _RecordPageState extends State<RecordPage> {
   List<Cause> selectedCauses = [];
   List<ButtonWithBottomLabel> btnList = [];
+  ShareLevel shareLevel = ShareLevel.PRIVATE;
+  StateSetter? stateSetter;
 
   _RecordPageState() {
     btnList = [
@@ -24,9 +28,56 @@ class _RecordPageState extends State<RecordPage> {
     ];
   }
 
-  void onSubmit() {
+  void onConfirm() {
     Store.addCauses(selectedCauses);
     Store.commit();
+  }
+
+  void closeDialog(BuildContext context) {
+    Navigator.pop(context);
+  }
+
+  void shareLevelSetter(ShareLevel shareLevel) {
+    stateSetter!(() {
+      this.shareLevel = shareLevel;
+    });
+  }
+
+  void show() {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+              title: Text('Share it?'),
+              content: StatefulBuilder(
+                  builder: (BuildContext context, StateSetter stateSetter) {
+                this.stateSetter = stateSetter;
+                return Row(
+                  children: [
+                    ShareLevelButton('public', Icons.public, ShareLevel.PUBLIC,
+                        shareLevel, shareLevelSetter),
+                    ShareLevelButton('friends', Icons.group, ShareLevel.FRIENDS,
+                        shareLevel, shareLevelSetter),
+                    ShareLevelButton('private', Icons.person,
+                        ShareLevel.PRIVATE, shareLevel, shareLevelSetter)
+                  ],
+                );
+              }),
+              actions: [
+                TextButton(
+                  onPressed: () => closeDialog(context),
+                  child: Text('CANCEL'),
+                ),
+                TextButton(
+                  onPressed: () {
+                    // acceptance logic
+                    closeDialog(context);
+                  },
+                  child: Text('ACCEPT'),
+                ),
+              ]);
+        },
+        barrierDismissible: false);
   }
 
   @override
@@ -62,14 +113,64 @@ class _RecordPageState extends State<RecordPage> {
           Container(
             margin: EdgeInsets.symmetric(horizontal: 50.0, vertical: 10.0),
             child: ElevatedButton(
-                onPressed: () {},
+                onPressed: show,
                 child: Text('Record'),
                 style: ElevatedButton.styleFrom(
                     minimumSize: Size(double.infinity, 70))),
-          ),
+          )
         ],
       ),
     );
+  }
+}
+
+class ShareLevelButton extends StatefulWidget {
+  String label;
+  IconData iconData;
+  ShareLevel shareLevel, currentShareLevel;
+  Function shareLevelSetter;
+
+  ShareLevelButton(this.label, this.iconData, this.shareLevel,
+      this.currentShareLevel, this.shareLevelSetter);
+
+  @override
+  _ShareLevelButtonState createState() => _ShareLevelButtonState(
+      this.label,
+      this.iconData,
+      this.shareLevel,
+      this.currentShareLevel,
+      this.shareLevelSetter);
+}
+
+class _ShareLevelButtonState extends State<ShareLevelButton> {
+  String label;
+  IconData iconData;
+  ShareLevel shareLevel, currentShareLevel;
+  Function shareLevelSetter;
+
+  _ShareLevelButtonState(this.label, this.iconData, this.shareLevel,
+      this.currentShareLevel, this.shareLevelSetter);
+
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton.icon(
+        onPressed: () {
+          shareLevelSetter(shareLevel);
+        },
+        icon: Icon(Icons.person),
+        label: Text(label),
+        style: ButtonStyle(backgroundColor: MaterialStateProperty.resolveWith(
+          (Set<MaterialState> states) {
+            print(currentShareLevel);
+            if (currentShareLevel == shareLevel) {
+              return Colors.black;
+            }
+
+            if (states.contains(MaterialState.pressed))
+              return Theme.of(context).colorScheme.primary.withOpacity(0.5);
+            return null; // Use the component's default.
+          },
+        )));
   }
 }
 
