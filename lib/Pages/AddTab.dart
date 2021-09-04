@@ -6,7 +6,6 @@ class AddTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     Text upperText = Text("How do you feel now?",
         textAlign: TextAlign.center,
         style: TextStyle(
@@ -21,8 +20,8 @@ class AddTab extends StatelessWidget {
     return Column(
       children: [
         Container(
-          child: upperText,
-          padding: EdgeInsets.all(20)
+            child: upperText,
+            padding: EdgeInsets.all(20)
         ),
         Expanded(
           child: GridView.count(
