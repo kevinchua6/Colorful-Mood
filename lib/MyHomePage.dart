@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:untitled/Pages/AddEntry.dart';
-import 'package:untitled/Pages/Profile.dart';
 import 'package:untitled/Pages/Home.dart';
+import 'package:untitled/Pages/Profile.dart';
+import 'package:untitled/Pages/Record.dart';
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key? key, required this.title}) : super(key: key);
@@ -26,6 +27,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   static List<Widget> _widgetOptions = <Widget>[
+    RecordPage(),
     Home(),
     AddEntry(),
     Profile(),
