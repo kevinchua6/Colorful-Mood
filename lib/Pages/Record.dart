@@ -20,8 +20,6 @@ class _RecordPageState extends State<RecordPage> {
           Cause.HEALTH, selectedCauses),
       ButtonWithBottomLabel(
           Icons.work_outline, 'work', Cause.WORK, selectedCauses),
-      ButtonWithBottomLabel(
-          Icons.timer_outlined, 'past issues', Cause.PAST, selectedCauses),
       ButtonWithBottomLabel(Icons.add, 'others', Cause.OTHERS, selectedCauses)
     ];
   }
@@ -84,11 +82,16 @@ class ButtonWithBottomLabel extends StatefulWidget {
   ButtonWithBottomLabel(this.iconData, this.description, this.cause, this.lst);
 
   @override
-  _ButtonWithBottomLabelState createState() => _ButtonWithBottomLabelState();
+  _ButtonWithBottomLabelState createState() =>
+      _ButtonWithBottomLabelState(lst, cause);
 }
 
 class _ButtonWithBottomLabelState extends State<ButtonWithBottomLabel> {
   bool selected = false;
+  final List<Cause> lst;
+  final Cause cause;
+  _ButtonWithBottomLabelState(this.lst, this.cause);
+
   @override
   Widget build(BuildContext context) {
     double? fontsize = Theme.of(context).textTheme.subtitle1!.fontSize;
@@ -102,6 +105,11 @@ class _ButtonWithBottomLabelState extends State<ButtonWithBottomLabel> {
               onPressed: () {
                 setState(() {
                   selected = !selected;
+                  if (lst.contains(cause)) {
+                    lst.remove(cause);
+                  } else {
+                    lst.add(cause);
+                  }
                 });
               },
               color: selected ? Colors.blueGrey : null,

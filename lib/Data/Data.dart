@@ -14,8 +14,6 @@ class CauseWithIcon {
       CauseWithIcon(Icons.health_and_safety_outlined, 'health', Cause.HEALTH);
   static final CauseWithIcon WORK =
       CauseWithIcon(Icons.work_outline, 'work', Cause.WORK);
-  static final CauseWithIcon PAST =
-      CauseWithIcon(Icons.timer_outlined, 'past', Cause.PAST);
   static final CauseWithIcon OTHERS =
       CauseWithIcon(Icons.add, 'others', Cause.OTHERS);
   CauseWithIcon(this.iconData, this.description, this.cause);
@@ -29,11 +27,12 @@ class MoodState {
   }
 }
 
-enum Cause { HOME, HEALTH, WORK, PAST, OTHERS }
+enum Cause { HOME, HEALTH, WORK, OTHERS }
 
 class MoodRecord {
   MoodState moodState;
   List<Cause> causes = [];
+  String details = "";
 
   MoodRecord(this.moodState);
 
@@ -45,6 +44,10 @@ class MoodRecord {
 
   void addCause(Cause cause) {
     causes.add(cause);
+  }
+
+  void setDetails(String details) {
+    this.details = details;
   }
 }
 
