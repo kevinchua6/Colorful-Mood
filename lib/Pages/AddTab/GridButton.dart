@@ -31,6 +31,49 @@ class GridButton extends StatefulWidget {
     }
   }
 
+  String getEmotion(int index) {
+    List<String> emotions = [
+      "Enraged",
+      "Frustrated",
+      "Tense",
+      "Cheerful",
+      "Festive",
+      "Exhilarated",
+      "Livid",
+      "Frightened",
+      "Irritated",
+      "Lively",
+      "Motivated",
+      "Inspired",
+      "Anxious",
+      "Worried",
+      "Uneasy",
+      "Happy",
+      "Focused",
+      "Blissful",
+      "Disgusted",
+      "Disappointed",
+      "Down",
+      "Calm",
+      "Secure",
+      "Miserable",
+      "Lonely",
+      "Tired",
+      "Relaxed",
+      "Restful",
+      "Blessed",
+      "Depressed",
+      "Exhausted",
+      "Drained",
+      "Sleepy",
+      "Peaceful",
+      "Serene"
+    ];
+
+    return emotions[index];
+
+  }
+
   @override
   _GridButtonState createState() => _GridButtonState();
 }
@@ -42,7 +85,7 @@ class _GridButtonState extends State<GridButton> {
     return GestureDetector(
       // When the child is tapped, show a snackbar.
       onTap: () {
-        String pos = widget.index.toString();
+        String pos = getEmotion(widget.index);
         SnackBar snackBar = SnackBar(content: Text(pos));
 
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
