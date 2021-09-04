@@ -7,7 +7,6 @@ class GridButton extends StatefulWidget {
 
   @override
   _GridButtonState createState() => _GridButtonState();
-
 }
 
 class _GridButtonState extends State<GridButton> {
