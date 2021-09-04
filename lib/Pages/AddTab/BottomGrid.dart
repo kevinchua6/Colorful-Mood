@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import 'GridButton.dart';
 
 class BottomGrid extends StatefulWidget {
-  BottomGrid({Key? key, required this.index}) : super(key: key);
+  BottomGrid({Key? key, required this.index, required this.lists}) : super(key: key);
   final int index;
-
+  final List<int> lists;
   @override
   _BottomGridStates createState() => _BottomGridStates();
 }
@@ -24,7 +24,7 @@ class _BottomGridStates extends State<BottomGrid> {
           padding: const EdgeInsets.all(0.5),
           child: DecoratedBox(
             decoration: BoxDecoration(
-              color:  GridButton.generateColor(index),
+              color:  GridButton.generateColor(widget.index),
             ),
           ),
         );
