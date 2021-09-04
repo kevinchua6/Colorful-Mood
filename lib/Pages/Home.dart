@@ -28,8 +28,7 @@ class Home extends StatelessWidget {
           padding: const EdgeInsets.all(3.0),
           child: DecoratedBox(
             decoration: BoxDecoration(
-              color: index < 18 ? colorss[((index / 3).floor() % 4) % 2]
-              : colorss[(((index / 3).floor() % 4)) % 2 + 2],
+              color: colorss[(index < 18 ? 0 : 2) + (index % 6 < 3 ? 0 : 1)]  ,
             ),
           ),
         );
