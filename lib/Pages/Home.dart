@@ -29,13 +29,9 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    return GridView.count(
-      // Create a grid with 2 columns. If you change the scrollDirection to
-      // horizontal, this produces 2 rows.
+    GridView grid = GridView.count(
       crossAxisCount: 6,
-      // Generate 100 widgets that display their index in the List.
       children: List.generate(36, (index) {
-
         return Container(
           width: 42,
           height: 42,
@@ -48,9 +44,28 @@ class Home extends StatelessWidget {
         );
       }),
     );
-    // return Text(
-    //   'Home',
-    //   style: getOptionStyle(),
-    // );
+
+    Text upperText = Text("How do you feel now?",
+        textAlign: TextAlign.center,
+        style: TextStyle(
+          fontFamily: 'Aleo',
+          fontStyle: FontStyle.normal,
+          fontWeight: FontWeight.bold,
+          fontSize: 30.0,
+          color: Colors.blue,
+        )
+    );
+
+    return Column(
+      children: [
+        Container(
+          child: upperText,
+          padding: EdgeInsets.all(20)
+        ),
+        Expanded(
+          child: grid
+        )
+      ],
+    );
   }
 }
