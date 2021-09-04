@@ -1,25 +1,21 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import 'BottomGrid.dart';
+
 class GridButton extends StatefulWidget {
   GridButton({Key? key, required this.index}) : super(key: key);
   final int index;
 
-  @override
-  _GridButtonState createState() => _GridButtonState();
-}
-
-class _GridButtonState extends State<GridButton> {
-
-  bool isTop(int num) {
+  static bool isTop(int num) {
     return num < 18;
   }
 
-  bool isLeft(int num) {
+  static bool isLeft(int num) {
     return num % 6 < 3;
   }
 
-  Color? generateColor(int index) {
+  static Color? generateColor(int index) {
     int thisColor = (isTop(index) ? 0 : 2) + (isLeft(index)? 0 : 1);
     switch(thisColor) {
       case 0:
@@ -36,6 +32,11 @@ class _GridButtonState extends State<GridButton> {
   }
 
   @override
+  _GridButtonState createState() => _GridButtonState();
+}
+
+class _GridButtonState extends State<GridButton> {
+  @override
   Widget build(BuildContext context) {
     // The GestureDetector wraps the button.
     return GestureDetector(
@@ -48,10 +49,9 @@ class _GridButtonState extends State<GridButton> {
       },
       child: DecoratedBox(
         decoration: BoxDecoration(
-          color: generateColor(widget.index),
+          color: GridButton.generateColor(widget.index),
         ),
       ),
     );
   }
-
 }
