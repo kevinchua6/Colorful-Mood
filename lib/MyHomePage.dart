@@ -23,7 +23,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   static List<Widget> _widgetOptions = <Widget>[
     RecordPage(),
-    Home(),
+    // Home(),
     AddTab(),
     Profile(),
   ];
