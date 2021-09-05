@@ -87,8 +87,17 @@ class _RecordPageState extends State<RecordPage> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Text('You selected'),
+          Text('You selected',
+            style: TextStyle(
+            fontFamily: 'Aleo',
+            fontStyle: FontStyle.normal,
+            fontWeight: FontWeight.bold,
+            fontSize: 30.0,
+            color: Colors.blue,
+            )
+          ),
           Container(
+            margin: const EdgeInsets.all(10.0),
             padding: EdgeInsets.all(10),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.all(Radius.circular(25.0)),
@@ -96,25 +105,51 @@ class _RecordPageState extends State<RecordPage> {
             ),
             child: Image.asset('assets/img.png'),
           ),
-          Text('Add state here'),
+          Text('Add state here',
+              style: TextStyle(
+                fontFamily: 'Aleo',
+                fontStyle: FontStyle.normal,
+                fontWeight: FontWeight.bold,
+                fontSize: 30.0,
+                color: Colors.blue,
+              )
+          ),
           Container(
-              padding: EdgeInsets.symmetric(vertical: 10.0),
-              child: Wrap(
-                direction: Axis.horizontal,
-                alignment: WrapAlignment.center,
-                children: btnList,
-              )),
-          Text('What is in your mind?'),
+            padding: EdgeInsets.symmetric(vertical: 10.0),
+                child: Wrap(
+                  direction: Axis.horizontal,
+                  alignment: WrapAlignment.center,
+                  children: btnList,
+          )),
+          Container(
+            margin: const EdgeInsets.all(10.0),
+              child: Text('What is in your mind?',
+                  style: TextStyle(
+                    fontFamily: 'Aleo',
+                    fontStyle: FontStyle.normal,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20.0,
+                    color: Colors.blue,
+                  )
+              )
+          ),
           TextField(
-              decoration: const InputDecoration(
-                  border: OutlineInputBorder(), hintText: 'Thoughts...'),
-              minLines: 5,
-              maxLines: null),
+            decoration: const InputDecoration(
+                      border: OutlineInputBorder(), hintText: 'Thoughts...'),
+                  minLines: 5,
+                  maxLines: null),
           Container(
             margin: EdgeInsets.symmetric(horizontal: 50.0, vertical: 10.0),
             child: ElevatedButton(
                 onPressed: show,
-                child: Text('Record'),
+                child: Text('Record',
+                  style: TextStyle(
+                    fontFamily: 'Aleo',
+                    fontStyle: FontStyle.normal,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20.0,
+                  )
+                ),
                 style: ElevatedButton.styleFrom(
                     minimumSize: Size(double.infinity, 70))),
           )

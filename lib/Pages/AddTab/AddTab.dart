@@ -54,14 +54,14 @@ class AddTab extends StatelessWidget {
             child: upperGrid
           )
         ),
-        Container(
-          child: lowerText,
-        ),
-        Container(
-          height: 135,
-          width: 300,
-          child: bottomGrid,
-        ),
+        // Container(
+        //   child: lowerText,
+        // ),
+        // Container(
+        //   height: 135,
+        //   width: 300,
+        //   child: bottomGrid,
+        // ),
       ],
     );
   }}
