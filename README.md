@@ -1,6 +1,10 @@
 # ColorfulMood
 **ColorfulMood** is a mobile application to help you manage your emotions.
 
+## Building the App
+1. Set up your environment using Flutter SDK by following the steps [here](https://flutter.dev/docs/get-started/install)
+2. Build and run the app on your favorite IDE and volia!
+
 ## Getting Started
 * To get started, click on **Add Entry**. Being a demo app, this will be the first page that appears on screen.
 * You will see a grid of 36 colorful boxes, split into 4 sections, indicated by 4 main colors, 
